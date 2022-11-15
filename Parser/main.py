@@ -1,11 +1,12 @@
 import openpyxl
-from Model import node_model
+from Model import city_model
+
 def GetNodes():
     wb = openpyxl.load_workbook(r"source")
     sheet = wb.active
-    x = []
-    y = []
-    list_nodes = []
+    x = list()
+    y = list()
+    list_nodes = dict()
     count_x = 0
     for row in sheet.iter_rows():
         count_y = 0
@@ -17,10 +18,14 @@ def GetNodes():
             count_y+=1
         count_x+=1
 
-
     for row in sheet.iter_rows():
+        tmp_city = list()
+        start_city = str()
         for cell in row:
             if type(cell.value) is type(int()):
-                list_nodes.append(node_model.Node(y[cell.row - 1], y[cell.column - 1], cell.value))
+                tmp_city.append(city_model.City(x[cell.column - 1], cell.value))
+                start_city = y[cell.row - 1]
+        if start_city != '':
+            list_nodes[start_city] = tmp_city
 
     return list_nodes
