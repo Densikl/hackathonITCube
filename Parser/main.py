@@ -22,6 +22,8 @@ def GetNodes(source):
         count_x+=1
 
     for row in sheet.iter_rows():
+        tmp_city = list()
+        start_city = str()
         for cell in row:
             if type(cell.value) == type(1):
                 start_city = y[cell.row - 1]
