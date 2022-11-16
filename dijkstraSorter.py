@@ -1,45 +1,31 @@
-cities = {
-    'firstCity': {
-        'secondCity' : 3200,
-        'thirdCity': 2599,
-        'sixthCity': 1500
-    },
-    'secondCity': {
-        'fourthCity': 1500,
-        'fifthCity': 3600
-    },
-    'sixthCity': {
-        'fourthCity': 7000
-    },
-    'thirdCity': {
+from Parser import main
 
-    },
-    'fourthCity': {
-
-    },
-    'fifthCity': {
-
-    }
-}
+cities = main.GetNodes("/Users/denis/code/hackathon/cases.xlsx")
 
 def searchCheapestWay(map, startingCity):
-    cities = list(map.keys())
+    print(map)
     prices = {
         startingCity: 0
     }
     queue = []
     queue.append(startingCity)
+    previousCity = startingCity
     while len(queue) > 0:
-        neighbours = list(map[queue[0]].keys())
+        map[queue[0]]
+        neighbours = []
         currentCity = queue[0]
+        for neighbour in list(map[queue[0]].keys()):
+            if neighbour != previousCity:
+                neighbours.append(neighbour)
         queue = queue + neighbours
         for neighbour in map[currentCity]:
             if prices.get(neighbour, float('inf')) > prices[currentCity] + map[currentCity][neighbour]:
                 prices[neighbour] = prices[currentCity] + map[currentCity][neighbour]
         queue.pop(0)
+        previousCity = currentCity
 
 
     print(prices)    
 
-searchCheapestWay(cities, 'firstCity')
+searchCheapestWay(cities, 'Город2')
 
