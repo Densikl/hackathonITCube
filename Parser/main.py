@@ -1,7 +1,6 @@
 import openpyxl
 import sys
 sys.path.insert(1, '/hackathon/Parser/Model/')
-from Parser.Model import city_model
 
 def GetNodes(source):
     wb = openpyxl.load_workbook(source)
